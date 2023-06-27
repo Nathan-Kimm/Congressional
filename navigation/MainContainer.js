@@ -44,7 +44,14 @@ export default function MainContainer(){
 
             return <Ionicons name = {iconName} size = {size} color ={color}/>
           },
-      })}>
+      })}
+      
+      tabBarOptions = {{
+        activeTintColor: '#77DD77',
+     }}
+      >
+
+        
 
         <Tab.Screen name = {homeName} component={HomeScreen}/>
         <Tab.Screen name = {searchName} component = {SearchScreen}/>
