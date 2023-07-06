@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { TouchableOpacity, Text, View } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import { Calendar } from 'react-native-calendars';
+import { Calendar, Agenda } from 'react-native-calendars';
 import { LocaleConfig } from 'react-native-calendars';
 
 // Screens
@@ -27,7 +27,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 // Custom header title component
-function LogoTitle({ onPress }) {
+function LogoTitle({}) {
   return (
     <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Home</Text>
   );
@@ -47,12 +47,13 @@ export default function MainContainer() {
   // Create a reference for the bottom sheet and a state variable for the selected date
   const bottomSheetRef = React.useRef(null);
   const [selectedDate, setSelectedDate] = React.useState(null);
+  const [selectedDateFormated, setSelectedDateFormated] = React.useState(null);
 
   // Create a state variable for the events
   const [events, setEvents] = React.useState({
-    '2023-07-01': [{ name: 'Rohan eats', time: '10:00 AM' }],
-    '2023-07-02': [{ name: '2 pounds', time: '2:00 PM' }],
-    '2023-07-03': [{ name: 'of rice', time: '4:00 PM' }],
+    '7/1/2023': [{ name: 'Rohan eats', time: '10:00 AM' }],
+    '7/2/2023': [{ name: '2 pounds', time: '2:00 PM' }],
+    '7/3/2023': [{ name: 'of rice', time: '4:00 PM' }],
   });
 
   // Function to open the bottom sheet
@@ -62,7 +63,20 @@ export default function MainContainer() {
 
   // Function to handle the selection of a day on the calendar
   const handleDayPress = (day) => {
-    setSelectedDate(day.dateString);
+    let date = day.dateString;
+    let date_change = "";
+    //2023-07-01
+    if(date.charAt(5) == "0")
+      date_change += date.substring(6, 7) + "/";
+    else
+      date_change += date.substring(5, 7) + "/";
+    if(date.charAt(8) == "0")
+      date_change += date.substring(9) + "/";
+    else
+      date_change += date.substring(8) + "/";
+    date_change += date.substring(0, 4);
+    setSelectedDate(date);
+    setSelectedDateFormated(date_change);
   };
 
   return (
@@ -130,12 +144,22 @@ export default function MainContainer() {
         <View style={{ flex: 1 }}>
           <View style={{ flex: 1 }}>
             {/* Calendar component */}
-            <Calendar
-              onDayPress={handleDayPress}
-              markedDates={{
-                [selectedDate]: { selected: true, disableTouchEvent: true, dotColor: '#004B8D', selectedDotColor: '#004B8D' },
-              }}
-              theme={{
+            <Agenda
+              selected = {selectedDate}
+              items = {events}
+              renderItem = {(item) => (
+                <View style = {{ padding: 20}}>
+                  <Text style = {{ fontSize: 16}}> {item.name}</Text>
+                  <Text style = {{ fontSize: 14}}> {item.name}</Text>
+                </View>
+              )}
+
+              renderEmptyDate ={() => (
+                <Text style = {{ fontSize: 16}}></Text>
+              )}
+
+              onDayPress = {handleDayPress}
+              theme = {{
                 textDayFontSize: 16,
                 textMonthFontSize: 16,
                 textDayHeaderFontSize: 14,
@@ -150,7 +174,7 @@ export default function MainContainer() {
           </View>
           {selectedDate && (
             <View style={{ flex: 1, paddingHorizontal: 20 }}>
-              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Events for {selectedDate}:</Text>
+              <Text style={{ fontSize: 18, fontWeight: 'bold' }}>Events for {selectedDateFormated}:</Text>
               {events[selectedDate] ? (
                 events[selectedDate].map((event, index) => (
                   <View key={index} style={{ padding: 20 }}>
@@ -163,6 +187,25 @@ export default function MainContainer() {
               )}
             </View>
           )}
+          <TouchableOpacity
+            style = {{
+              position: 'absolute',
+              bottom: 20,
+              right: 20,
+              backgroundColor: '#004B8D',
+              borderRadius: 25,
+              width: 50,
+              height: 50,
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+
+            onPress = {() => {
+              //choose what to do here
+            }}
+          >
+            <Text style = {{ color: 'white', fontSize: 24}}> + </Text>
+          </TouchableOpacity>
         </View>
       </RBSheet>
     </NavigationContainer>
