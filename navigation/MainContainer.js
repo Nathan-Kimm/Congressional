@@ -89,17 +89,16 @@ export default function MainContainer() {
             let rn = route.name;
 
             // Determine the appropriate icon name based on the current route
-            if (rn === homeName) {
+            if (rn === homeName)
               iconName = focused ? 'home' : 'home-outline';
-            } else if (rn === goalName) {
+            else if (rn === goalName)
               iconName = focused ? 'list' : 'list-outline';
-            } else if (rn === nutritionName) {
+            else if (rn === nutritionName)
               iconName = focused ? 'nutrition' : 'nutrition-outline';
-            } else if (rn === fitnessName) {
+            else if (rn === fitnessName)
               iconName = focused ? 'barbell' : 'barbell-outline';
-            } else if (rn === profileName) {
+            else if (rn === profileName)
               iconName = focused ? 'person-circle' : 'person-circle-outline';
-            }
 
             // Render the Ionicons component with the appropriate icon name
             return <Ionicons name={iconName} size={size} color={color} />;
