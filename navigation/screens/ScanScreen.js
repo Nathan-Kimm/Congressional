@@ -19,7 +19,7 @@ class App extends React.Component {
   }
 }
 
-export default function FitnessScreen({navigation}){
+export default function ScanScreen({navigation}){
   return(
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text
