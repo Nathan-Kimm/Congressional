@@ -7,20 +7,19 @@ import SearchBar from '../components/SearchBar';
 export default function ProfileScreen({navigation}){
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
-  const [data, setData] = useState();
 
-  let foods = [
-    { id: '1', name: 'Apple', details: "A Crunchy Fruit", },
+  const FOODS = [
+    { id: '1', name: 'Apple', details: "A Red Fruit", },
     { id: '2', name: 'Watermelon', details: "A Watery Fruit", },
-    { id: '3', name: 'Orange', details: "A Acidic Fruit", },
-  ]
-  setData(foods);
+    { id: '3', name: 'Orange', details: "An Orange Fruit", },
+    { id: '4', name: 'Grape', details: "A Purple Fruit"},
+  ];
 
   return(
     <View style={styles.root}>
-      <Text style={styles.title}>Add Allergies</Text>s
+      <Text style={styles.title}>Add Allergies</Text>
       <SearchBar searchPhrase={searchPhrase} setSearchPhrase={setSearchPhrase} clicked={clicked} setClicked={setClicked} />
-      {(<List searchPhrase={searchPhrase} data={data} setClicked={setClicked} /> )}
+      <List searchPhrase={searchPhrase} data={FOODS} setClicked={setClicked} />
     </View>
   );
 };

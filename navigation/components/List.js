@@ -1,11 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, ScrollView, FlatList } from "react-native";
 
 // definition of the Item, which will be rendered in the FlatList
 const Item = ({ name, details }) => (
   <View style={styles.item}>
     <Text style={styles.title}>{name}</Text>
-    <Text style={styles.title}>{details}</Text>
+    <Text style={styles.details}>{details}</Text>
   </View>
 );
 
@@ -27,7 +27,7 @@ const List = ({ searchPhrase, setClicked, data }) => {
   };
 
   return (
-    <View style={styles.list__container}>
+    <ScrollView style={styles.list__container} showsVerticalScrollIndicator = { false }>
       <View
         onStartShouldSetResponder={() => {
           setClicked(false);
@@ -39,11 +39,9 @@ const List = ({ searchPhrase, setClicked, data }) => {
           keyExtractor={(item) => item.id}
         />
       </View>
-    </View>
+    </ScrollView>
   );
 };
-
-export default List;
 
 const styles = StyleSheet.create({
   list__container: {
@@ -60,6 +58,12 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 5,
-    fontStyle: "italic",
   },
+  details: {
+    fontSize: 15,
+    marginBottom: 2,
+    fontStyle: "italic",
+  }
 });
+
+export default List;
