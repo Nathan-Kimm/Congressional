@@ -1,38 +1,65 @@
-import * as React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import React, { useEffect } from 'react';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
-export default function ScanScreen({navigation}){
-  const [hasPermission, setHasPermission] = useState(null);
-  const [scanned, setScanned] = useState(false);
+export default function ScanScreen() {
+  const [ hasPermission, setHasPermission ] = React.useState(false);
+  const [ scanData, setScanData ] = React.useState();
 
   useEffect(() => {
-    const getBarCodeScannerPermissions = async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
-    };
-    getBarCodeScannerPermissions();
-  }, []);
+    (async() => {
+      const {status} = await BarCodeScanner.requestPermissionsAsync();
+      setHasPermission(status === "granted");
+    })();
+  }, [])
 
+  if (!hasPermission) {
+    return (
+      <View style = {styles.container}>
+        <Text>Please grant camera permissions to app</Text>
+      </View>
+    );
+  }
+  
   const handleBarCodeScanned = ({ type, data }) => {
-    setScanned(true);
-    alert('Bar code with type ${type} and data ${data} has been scanned!');
+    setScanData(data);
+    console.log(`Data: ${data}`);
+    console.log(`Type: ${type}`);
   };
 
-  if (hasPermission === null)
-    return <Text>Requesting for camera permission</Text>;
-  if (hasPermission === false)
-    return <Text>No access to camera</Text>;
-
-  return(
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+  return (
+    <View style = {styles.container}>
+      
       <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+      style = {StyleSheet.absoluteFillObject}
+      onBarCodeScanned = {scanData ? undefined : handleBarCodeScanned}
       />
-      {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+      <View style = {styles.outline}>
+      </View>
+       {scanData && (
+       <Button title='Scan Again?' onPress={() => setScanData(undefined)} />
+      )}
+      <StatusBar style="auto" />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  outline: {
+    width: 240,
+    height: 160,
+    borderColor: 'white',
+    borderWidth: 2,
+    borderRadius: 15,
+    borderWidth: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
