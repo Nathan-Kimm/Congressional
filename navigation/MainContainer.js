@@ -2,12 +2,7 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { TouchableOpacity, Text, View } from 'react-native';
-import RBSheet from 'react-native-raw-bottom-sheet';
-import { Calendar, Agenda } from 'react-native-calendars';
-import { LocaleConfig } from 'react-native-calendars';
 
 // Screens
 import HomeScreen from './screens/HomeScreen';
@@ -15,7 +10,6 @@ import ScanScreen from './screens/ScanScreen';
 import SearchScreen from './screens/SearchScreen';
 import RestaurantsScreen from './screens/RestaurantsScreen';
 import ProfileScreen from './screens/ProfileScreen';
-
 // Screen names
 const homeName = "Home";
 const scanName = "Scan";
@@ -24,7 +18,6 @@ const restaurantsName = "Restaurants";
 const profileName = 'Profile';
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
 
 export default function MainContainer() {
   return (

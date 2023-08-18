@@ -5,7 +5,7 @@ export default function SearchScreen({navigation}){
   return(
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text
-      onPress={() => navigation.navigate('Home')}
+      onPress={() => navigation.navigate('FirstScreen')}
       style = {{fontSize: 26, fontWeight: 'bold'}}>Search!</Text>
     </View>
   );
