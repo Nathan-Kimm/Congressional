@@ -7,12 +7,13 @@ import SearchBar from '../components/SearchBar';
 export default function ProfileScreen({navigation}){
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
+  
 
   return(
     <View style={styles.root}>
       <Text style={styles.title}>Add Allergies</Text>
       <SearchBar searchPhrase={searchPhrase} setSearchPhrase={setSearchPhrase} clicked={clicked} setClicked={setClicked} />
-      {/* <List searchPhrase={searchPhrase} data={FOODS} setClicked={setClicked} /> */}
+      <List searchPhrase={searchPhrase} data={FOODS} setClicked={setClicked} />
     </View>
   );
 };

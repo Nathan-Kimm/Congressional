@@ -53,10 +53,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   outline: {
+    borderStyle: "dashed",
     width: 240,
     height: 160,
+    
     borderColor: 'white',
-    borderWidth: 2,
     borderRadius: 15,
     borderWidth: 5,
     alignItems: 'center',
