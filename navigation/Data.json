@@ -1,0 +1,10 @@
+{
+    "currentuser": {},
+    "users": [
+        {
+            "credentials": ["username", "password"],
+            "data": ["name", "age", "weight"],
+            "allergies": ["peanuts"]
+        }
+    ]
+}
