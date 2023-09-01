@@ -4,35 +4,18 @@ import { View, Text, TextInput, Button, Pressable, StyleSheet } from 'react-nati
 import Data from '../Data.json';
 
 export default function WelcomeScreen({navigation}){
-  
-  const [ data, setData ] = useState(Data);
   const [ username, setUsername ] = useState(null);
   const [ password, setPassword ] = useState(null);
 
-  function authenticateCredentials(){
-    setData(
-      data.users.map(item => {
-      if(item.credentials[0] === username && item.credentials[1] === password){
-        navigation.navigate('Home Navigation')
-        return {...data, currentuser: item, name: item.credentials[0]};
-      }
-      else
-        navigation.navigate('WelcomeScreen')
-    }));
-  }
-
   return(
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style = {{fontSize: 26, fontWeight: 'bold', textAlign: 'center'}}>Login</Text>
+      <Text style = {{fontSize: 26, fontWeight: 'bold', textAlign: 'center'}}>Sign Up</Text>
       <Text style = {styles.text}>Username: </Text>
       <TextInput style = {styles.textInput} value = {username} onChangeText = {setUsername} placeholder = "Username" returnKeyType="done"/>
       <Text style = {styles.text}>Password: </Text>
       <TextInput style = {styles.textInput} value = {password} onChangeText = {setPassword} placeholder = "Password" returnKeyType="done"/>
-      <Pressable style = {styles.button} onPress = {authenticateCredentials}>
+      <Pressable style = {styles.button} onPress = {() => navigation.navigate('Set Data')}>
         <Text style = {{fontWeight: 'bold', fondSize: 26, left: 10}}>Continue</Text>
-      </Pressable>
-      <Pressable style = {styles.button} onPress = {() => navigation.navigate('Sign Up')}>
-        <Text style = {{fontWeight: 'bold', fondSize: 26, left: 10}}>Sign Up</Text>
       </Pressable>
     </View>
   );

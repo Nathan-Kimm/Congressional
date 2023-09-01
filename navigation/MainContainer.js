@@ -13,6 +13,7 @@ import RestaurantsScreen from './screens/RestaurantsScreen';
 import ProfileScreen from './screens/ProfileScreen';
 
 import WelcomeScreen from './screens/WelcomeScreen';
+import SignUp from './screens/SignUp';
 import SetData from './screens/SetData';
 
 // Screen names
@@ -23,6 +24,7 @@ const restaurantsName = "Restaurants";
 const profileName = 'Profile';
 
 const welcomeName = "Welcome";
+const signUpName = "Sign Up";
 const setDataName = "Set Data";
 const homeNavigationName = "Home Navigation";
 
@@ -72,6 +74,7 @@ export default function MainContainer() {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerMode: false }} initialRouteName={welcomeName}>
         <Stack.Screen name = { welcomeName } component = { WelcomeScreen } />
+        <Stack.Screen name = { signUpName } component = { SignUp } />
         <Stack.Screen name = { setDataName } component = { SetData } />
         <Stack.Screen name = { homeNavigationName } component = { HomeNavigaton } />
       </Stack.Navigator>
