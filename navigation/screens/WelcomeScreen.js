@@ -13,8 +13,8 @@ export default function WelcomeScreen({navigation}){
     setData(
       data.users.map(item => {
       if(item.credentials[0] === username && item.credentials[1] === password){
-        navigation.navigate('Home Navigation')
-        return {...data, currentuser: item, name: item.credentials[0]};
+        navigation.navigate('Home Navigation', {Data: data})
+        return {...data, currentuser: item};
       }
       else
         navigation.navigate('WelcomeScreen')
