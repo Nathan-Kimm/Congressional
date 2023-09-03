@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity, Modal, Pressable } from 'react-native';
 
-export default function HomeScreen({ route, navigation }) {
+export default function HomeScreen({ navigation }) {
   
   const [selected, setSelected] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
@@ -43,7 +43,6 @@ export default function HomeScreen({ route, navigation }) {
 
   return (
     <ScrollView>
-      <Text>Data: {JSON.stringify(Data)}</Text>
       <View style={styles.container}>
         <Text style={styles.title}>Welcome to Fitness App</Text>
         <Text style={styles.subtitle}>Let's have a productive day today!</Text>

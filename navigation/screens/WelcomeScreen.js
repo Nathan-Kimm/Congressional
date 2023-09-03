@@ -10,15 +10,17 @@ export default function WelcomeScreen({navigation}){
   const [ password, setPassword ] = useState(null);
 
   function authenticateCredentials(){
+    var isValid = false;
     setData(
       data.users.map(item => {
-      if(item.credentials[0] === username && item.credentials[1] === password){
-        navigation.navigate('Home Navigation', {Data: data})
-        return {...data, currentuser: item};
-      }
-      else
-        navigation.navigate('WelcomeScreen')
+        if(item.credentials[0] === username && item.credentials[1] === password){
+          isValid = true;
+          return {...data, currentuser: item};
+        }
     }));
+    if(isValid){
+      navigation.navigate('Home Navigation');
+    }
   }
 
   return(
