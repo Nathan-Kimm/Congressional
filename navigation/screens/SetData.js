@@ -17,7 +17,7 @@ export default function SetData({navigation}){
       <TextInput style = {styles.textInput} value = {age} onChangeText = {setAge} placeholder = "Age" keyboardType = "number-pad" returnKeyType="done"/>
       <Text style = {styles.text}>Weight: </Text>
       <TextInput style = {styles.textInput} value = {weight} onChangeText = {setWeight} placeholder = "Lbs"  keyboardType = "number-pad" returnKeyType="done"/>
-      <Pressable style = {styles.button} onPress = {() => navigation.navigate('Home Navigation')}>
+      <Pressable style = {styles.button} onPress = {() => navigation.navigate('Set Allergies')}>
         <Text style = {{fontWeight: 'bold', fondSize: 26, left: 10}}>Continue</Text>
       </Pressable>
     </View>

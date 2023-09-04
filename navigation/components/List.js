@@ -6,6 +6,7 @@ const Item = ({ name, details }) => (
   <View style={styles.item}>
     <Text style={styles.title}>{name}</Text>
     <Text style={styles.details}>{details}</Text>
+    
   </View>
 );
 
@@ -17,11 +18,11 @@ const List = ({ searchPhrase, setClicked, data }) => {
       return <Item name={item.name} details={item.details} />;
     }
     // filter of the name
-    if (item.name.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
+    if (item.name.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, "")) || item.name.toUpperCase().includes(searchPhrase.toUpperCase().trim())) {
       return <Item name={item.name} details={item.details} />;
     }
     // filter of the description
-    if (item.details.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, ""))) {
+    if (item.details.toUpperCase().includes(searchPhrase.toUpperCase().trim().replace(/\s/g, "")) || item.details.toUpperCase().includes(searchPhrase.toUpperCase().trim())) {
       return <Item name={item.name} details={item.details} />;
     }
   };

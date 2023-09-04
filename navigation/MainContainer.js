@@ -15,6 +15,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import SignUp from './screens/SignUp';
 import SetData from './screens/SetData';
+import SetAllergies from './screens/setAllergies';
 
 // Screen names
 const homeName = "Home";
@@ -26,6 +27,7 @@ const profileName = 'Profile';
 const welcomeName = "Welcome";
 const signUpName = "Sign Up";
 const setDataName = "Set Data";
+const setAllergiesName = "Set Allergies";
 const homeNavigationName = "Home Navigation";
 
 const Tab = createBottomTabNavigator();
@@ -76,6 +78,7 @@ export default function MainContainer() {
         <Stack.Screen name = { welcomeName } component = { WelcomeScreen } />
         <Stack.Screen name = { signUpName } component = { SignUp } />
         <Stack.Screen name = { setDataName } component = { SetData } />
+        <Stack.Screen name = { setAllergiesName } component = { SetAllergies } />
         <Stack.Screen name = { homeNavigationName } component = { HomeNavigaton } />
       </Stack.Navigator>
     </NavigationContainer>
